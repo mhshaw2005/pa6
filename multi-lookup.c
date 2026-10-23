@@ -103,6 +103,10 @@ void *resolver(void *arg)
         pthread_mutex_lock(&s->res_log_lock);
         fprintf(s->res_log, "%s, %s\n", name, result);
         pthread_mutex_unlock(&s->res_log_lock);
+
+        pthread_mutex_lock(&s->stdout_lock); 
+        printf("%s, %s\n", name, result);            
+        pthread_mutex_unlock(&s->stdout_lock);      
     }
  
     pthread_mutex_lock(&s->stdout_lock);
