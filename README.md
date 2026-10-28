@@ -13,14 +13,14 @@ array_get - Starts by creating a mutex lock. Makes a thread wait if there is not
 array_close - Safely closes the array.
 
 ## Multilookup.c
-elapsed - 
+elapsed - initializes the time count for the program.
 
-log_err -
+log_err - Logs an error to the console, uses a mutex lock.
 
-requester - 
+requester - Starts by creating a mutex lock and fetching the next unserviced file. Opens file with error handling. Once it has a new line we ensure it is the correct format and the correct length before working with them. We then put them into the array using locks to ensure that nothing is accessed by multiple threads.
 
-resolver - 
+resolver - enters array and parses through. Attempts to lookup the service using dnslookups. Uses locks to properly output the correct print statements. Once the thread has outputted all of the services in the array it will output its total runtime and unlock all relevant locks.  
 
-parse_count - 
+parse_count - Ensures that all of the counts match and are correct. otherwise outputs what was not matching. 
 
-main - 
+main - Runs the actual program. Starts by validating the file and ensuring all of the programs inputs are correct. Attempts to open and init the array with the files, outputting errors as needed. init all mutex conditions after that init start values. Starts by creating resolver threads to ensure there is data before the requester starts to request. once the resolvers are done it starts its requester. Check for any errors. Then we join the requester threads then we join the resolver threads. Then give total runtime output as well as freeing all memory properly and handling any final errors. 
