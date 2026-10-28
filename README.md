@@ -24,3 +24,8 @@ resolver - enters array and parses through. Attempts to lookup the service using
 parse_count - Ensures that all of the counts match and are correct. otherwise outputs what was not matching. 
 
 main - Runs the actual program. Starts by validating the file and ensuring all of the programs inputs are correct. Attempts to open and init the array with the files, outputting errors as needed. init all mutex conditions after that init start values. Starts by creating resolver threads to ensure there is data before the requester starts to request. once the resolvers are done it starts its requester. Check for any errors. Then we join the requester threads then we join the resolver threads. Then give total runtime output as well as freeing all memory properly and handling any final errors. 
+
+## Running the code
+Run the makefile which has device instructions on what the computer needs to do. we can then run the multi_lookup.c using ./multi-lookup 5 5 serviced.txt results.txt input/names1*.txt; this runs the program with 5 threads, on the files in input with a name containing names1__.txt where __ is 1,2,3,4,5,etc. the number of the text files.
+
+We then run the program the same way, but with Valgrind to check for memory issues. 
